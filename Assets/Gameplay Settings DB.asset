@@ -15,6 +15,10 @@ MonoBehaviour:
   _playerSettings:
     _health: 5
     _gold: 10
+  _gameSettings:
+    _enemiesCountDeltaPerWave: 3
+    _enemiesWavesCooldownSec: 20
+    _enemiesStatsDeltaPerWave: 1
   _enemiesSettings:
   - monoBehaviour: {fileID: 8600851606324196024, guid: 12845adb52a518748a569dc40ad0a663,
       type: 3}
@@ -28,6 +32,18 @@ MonoBehaviour:
       health: 5
       damage: 1
       scorePoints: 1
-  _gameSettings:
-    _enemiesCountDeltaPerWave: 3
-    _enemiesWavesCooldownSec: 20
+  _defenseBuildingsSettings:
+  - monoBehaviour: {fileID: 2620950377314941822, guid: d86c5b3b8b4d9554cab308904a7978d2,
+      type: 3}
+    data:
+      damage: 1
+      shotsPerSec: 2
+      upgradePrice: 1
+      upgradeLevelStatsDelta: 1
+  - monoBehaviour: {fileID: 4590124718162789453, guid: c5bd41c47bae5f443a39bfec13491434,
+      type: 3}
+    data:
+      damage: 2
+      shotsPerSec: 1
+      upgradePrice: 1
+      upgradeLevelStatsDelta: 1

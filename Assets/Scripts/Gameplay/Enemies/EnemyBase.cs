@@ -21,11 +21,9 @@ namespace Gameplay
         private void OnEnable()
         {
             _settings = GameplaySettings.Enemies[this.GetType()];
+            InitializeComponents();
 
-            _health.Initialize(_settings.health);
             _health.Died += OnDied;
-
-            _damageDealer.Initialize(_settings.damage);
 
             _enabledEnemies.Add(this);
         }
@@ -81,6 +79,14 @@ namespace Gameplay
             // TODO
             //var explosion = Pool.Instance.Get<ExplosionVFX>();
             //explosion.transform.position = transform.position;
+        }
+
+        private void InitializeComponents()
+        {
+            var waveDependentStatsDelta = (Data.Session.EnemiesWaveNumber - 1) * GameplaySettings.Game.EnemiesStatsDeltaPerWave;
+
+            _health.Initialize(_settings.health + waveDependentStatsDelta);
+            _damageDealer.Initialize(_settings.damage + waveDependentStatsDelta);
         }
     }
 }
