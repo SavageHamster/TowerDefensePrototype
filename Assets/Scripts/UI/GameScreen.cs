@@ -1,4 +1,5 @@
-﻿using DataLayer;
+﻿using System;
+using DataLayer;
 using Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +30,7 @@ namespace UI
             Data.Session.Gold.Subscribe(OnGoldValueChanged);
             Data.Session.PlayerHealth.Subscribe(OnPlayerHealthChanged);
             Data.Session.Score.Subscribe(OnScoreChanged);
+            Data.Session.IsGameOver.Subscribe(OnGameOver);
         }
 
         private void OnDestroy()
@@ -38,6 +40,7 @@ namespace UI
             Data.Session.Gold.Unsubscribe(OnGoldValueChanged);
             Data.Session.PlayerHealth.Unsubscribe(OnPlayerHealthChanged);
             Data.Session.Score.Unsubscribe(OnScoreChanged);
+            Data.Session.IsGameOver.Unsubscribe(OnGameOver);
         }
 
         protected override void OnShow()
@@ -45,6 +48,14 @@ namespace UI
             ResetScreen();
 
             base.OnShow();
+        }
+
+        private void OnGameOver()
+        {
+            if (Data.Session.IsGameOver.Get())
+            {
+                _gameOverObj.SetActive(true);
+            }
         }
 
         private void OnScoreChanged()
@@ -64,11 +75,13 @@ namespace UI
 
         private void OnGameOverBackToMenuButtonClick()
         {
+            Data.Session.IsGameOver.Set(true);
             OpenMenu();
         }
 
         private void OnBackToMenuButtonClick()
         {
+            Data.Session.IsGameOver.Set(true);
             OpenMenu();
         }
 

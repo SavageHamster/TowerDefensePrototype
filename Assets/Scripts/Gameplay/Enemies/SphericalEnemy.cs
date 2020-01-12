@@ -1,13 +1,9 @@
-﻿using UnityEngine;
-
-namespace Gameplay
+﻿namespace Gameplay
 {
     internal sealed class SphericalEnemy : EnemyBase
     {
-        protected override void OnDied()
+        protected override void Release()
         {
-            base.OnDied();
-
             Pool.Instance.Release<SphericalEnemy>(gameObject);
         }
     }

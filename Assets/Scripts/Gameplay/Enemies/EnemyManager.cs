@@ -1,7 +1,7 @@
 ﻿using DataLayer;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Gameplay
 {
@@ -14,9 +14,19 @@ namespace Gameplay
 
         private float _nextWaveTime;
 
+        private void Start()
+        {
+            Data.Session.IsGameOver.Subscribe(OnGameOverChanged);
+        }
+
+        private void OnDestroy()
+        {
+            Data.Session.IsGameOver.Unsubscribe(OnGameOverChanged);
+        }
+
         private void Update()
         {
-            if (Time.time >= _nextWaveTime)
+            if (!Data.Session.IsGameOver.Get() && Time.time >= _nextWaveTime)
             {
                 SpawnEnemies();
 
@@ -24,11 +34,19 @@ namespace Gameplay
             }
         }
 
+        private void OnGameOverChanged()
+        {
+            if (Data.Session.IsGameOver.Get())
+            {
+                EnemyBase.ReleaseAll();
+            }
+        }
+
         private void SpawnEnemies()
         {
             var enemiesCount = CalculateEnemiesCount();
 
-            for (int i = 1; i <= enemiesCount; i++)
+            for (int i = 0; i < enemiesCount; i++)
             {
                 SpawnEnemy(i);
             }
@@ -39,15 +57,16 @@ namespace Gameplay
         private void SpawnEnemy(int number)
         {
             var enemyObj = GetRandomEnemyObj();
-            var spawnPointIndex = _spawnPoints.Count % number;
+            var enemyComponent = enemyObj.GetComponent<EnemyBase>();
+            var spawnPointIndex =  number % _spawnPoints.Count;
 
-            enemyObj.GetComponent<EnemyBase>().InitializePositions(_spawnPoints[spawnPointIndex].position, _castle.position);
+            enemyComponent.InitializePositions(_spawnPoints[spawnPointIndex].position, _castle.position);
         }
 
         private GameObject GetRandomEnemyObj()
         {
             // TODO: implement some algorithm.
-            return UnityEngine.Random.value >= 0.5f ? 
+            return Random.value >= 0.5f ? 
                 Pool.Instance.Get<SphericalEnemy>() : 
                 Pool.Instance.Get<CapsularEnemy>();
         }
@@ -57,7 +76,7 @@ namespace Gameplay
             var minValue = Data.Session.EnemiesWaveNumber;
             var maxValue = Data.Session.EnemiesWaveNumber + GameplaySettings.Game.EnemiesCountDeltaPerWave;
 
-            return UnityEngine.Random.Range(minValue, maxValue);
+            return Random.Range(minValue, maxValue);
         }
     }
 }

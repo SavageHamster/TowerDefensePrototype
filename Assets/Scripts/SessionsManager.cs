@@ -22,7 +22,7 @@ namespace Gameplay
 
         public void FinishSession()
         {
-            Data.Session.IsGameOver = true;
+            Data.Session.IsGameOver.Set(true);
         }
 
         public void RestartSession()

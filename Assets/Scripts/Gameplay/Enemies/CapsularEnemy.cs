@@ -2,10 +2,8 @@
 {
     internal sealed class CapsularEnemy : EnemyBase
     {
-        protected override void OnDied()
+        protected override void Release()
         {
-            base.OnDied();
-
             Pool.Instance.Release<CapsularEnemy>(gameObject);
         }
     }

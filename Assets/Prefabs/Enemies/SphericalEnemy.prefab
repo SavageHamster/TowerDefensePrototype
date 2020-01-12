@@ -15,6 +15,19 @@ MonoBehaviour:
   _navMeshAgent: {fileID: 3309895764000198154}
   _health: {fileID: 5162654157559485075}
   _damageDealer: {fileID: 598286483890875230}
+--- !u!135 &316368394073761792
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486857532175818273}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.75
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8861123707063928522
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,7 +39,6 @@ GameObject:
   - component: {fileID: 7803637991578761040}
   - component: {fileID: 6469494189928935317}
   - component: {fileID: 6327914609018718354}
-  - component: {fileID: 8995618180110800218}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -94,19 +106,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &8995618180110800218
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8861123707063928522}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1049028278859140296
 PrefabInstance:
   m_ObjectHideFlags: 0

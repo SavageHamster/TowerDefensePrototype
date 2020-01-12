@@ -8,9 +8,10 @@ namespace DataLayer
         private T _value;
         private readonly List<Action> _callbacks = new List<Action>();
 
-        public ObservableProperty()
+        public ObservableProperty(T value = default)
         {
-            _value = default;
+            _value = value;
+            NotifyObservers();
         }
 
         public void Set(T value)
