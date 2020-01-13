@@ -1,4 +1,5 @@
 ﻿using DataLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,7 +19,15 @@ namespace Gameplay
         {
             _settings = GameplaySettings.DefenseBuildings[GetType()];
 
-            InitializeComponents();
+            SessionsManager.Instance.SessionStarted += OnSessionStarted;
+        }
+
+        private void OnDestroy()
+        {
+            if (SessionsManager.Instance != null)
+            {
+                SessionsManager.Instance.SessionStarted -= OnSessionStarted;
+            }
         }
 
         private void Update()
@@ -50,6 +59,12 @@ namespace Gameplay
                 .Select(enemy => enemy)
                 .Where(enemy => (enemy.transform.position - transform.position).sqrMagnitude <= ShotRangeSqr)
                 .ToList();
+        }
+
+        private void OnSessionStarted()
+        {
+            _level = 0;
+            InitializeComponents();
         }
 
         private void TryUpgrade()

@@ -1,5 +1,4 @@
-﻿using System;
-using DataLayer;
+﻿using DataLayer;
 using Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,9 +12,9 @@ namespace UI
         [SerializeField]
         private TMPro.TextMeshProUGUI _healthLabel;
         [SerializeField]
-        private TMPro.TextMeshProUGUI _scoreLabel;
-        [SerializeField]
         private TMPro.TextMeshProUGUI _goldLabel;
+        [SerializeField]
+        private TMPro.TextMeshProUGUI _killsCountLabel;
         [SerializeField]
         private GameObject _gameOverObj;
         [SerializeField]
@@ -29,7 +28,6 @@ namespace UI
 
             Data.Session.Gold.Subscribe(OnGoldValueChanged);
             Data.Session.PlayerHealth.Subscribe(OnPlayerHealthChanged);
-            Data.Session.Score.Subscribe(OnScoreChanged);
             Data.Session.IsGameOver.Subscribe(OnGameOver);
         }
 
@@ -39,7 +37,6 @@ namespace UI
 
             Data.Session.Gold.Unsubscribe(OnGoldValueChanged);
             Data.Session.PlayerHealth.Unsubscribe(OnPlayerHealthChanged);
-            Data.Session.Score.Unsubscribe(OnScoreChanged);
             Data.Session.IsGameOver.Unsubscribe(OnGameOver);
         }
 
@@ -55,12 +52,8 @@ namespace UI
             if (Data.Session.IsGameOver.Get())
             {
                 _gameOverObj.SetActive(true);
+                _killsCountLabel.text = Data.Session.KillsCount.ToString();
             }
-        }
-
-        private void OnScoreChanged()
-        {
-            _scoreLabel.text = Data.Session.Score.Get().ToString();
         }
 
         private void OnPlayerHealthChanged()

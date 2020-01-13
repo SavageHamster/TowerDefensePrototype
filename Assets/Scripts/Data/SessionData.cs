@@ -3,29 +3,28 @@
     public class SessionData
     {
         public int EnemiesWaveNumber { get; set; }
+        public int KillsCount { get; set; }
         public ObservableProperty<bool> IsGameOver { get; set; }
         public ObservableProperty<int> Gold { get; private set; }
         public ObservableProperty<int> PlayerHealth { get; private set; }
-        public ObservableProperty<int> Score { get; private set; }
 
         public SessionData()
         {
-            EnemiesWaveNumber = 1;
+            IsGameOver = new ObservableProperty<bool>();
+            Gold = new ObservableProperty<int>();
+            PlayerHealth = new ObservableProperty<int>();
 
-            IsGameOver = new ObservableProperty<bool>(false);
-            Gold = new ObservableProperty<int>(GameplaySettings.Player.Gold);
-            PlayerHealth = new ObservableProperty<int>(GameplaySettings.Player.Health);
-            Score = new ObservableProperty<int>(0);
+            Reset();
         }
 
         public void Reset()
         {
             EnemiesWaveNumber = 1;
+            KillsCount = 0;
 
             IsGameOver.Set(false);
             Gold.Set(GameplaySettings.Player.Gold);
             PlayerHealth.Set(GameplaySettings.Player.Health);
-            Score.Set(0);
         }
     }
 }

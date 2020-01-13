@@ -7,8 +7,6 @@ namespace Gameplay
     {
         [SerializeField]
         private Health _health;
-        [SerializeField]
-        private CollisionDamageDealer _damageDealer;
 
         private GameplaySettingsDB.PlayerSettings _settings;
 
@@ -50,7 +48,6 @@ namespace Gameplay
         private void OnSessionStarted()
         {
             _health.Initialize(_settings.Health);
-            _damageDealer.Initialize(int.MaxValue);
         }
     }
 }

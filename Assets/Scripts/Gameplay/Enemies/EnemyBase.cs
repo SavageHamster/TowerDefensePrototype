@@ -40,17 +40,11 @@ namespace Gameplay
 
         private void OnTriggerEnter(Collider other)
         {
-            var damageDealer = other.GetComponent<CollisionDamageDealer>();
+            var player = other.GetComponent<Player>();
 
-            if (damageDealer != null)
+            if (player != null)
             {
-                var enemyBase = other.GetComponent<EnemyBase>();
-
-                // Enemies should not damage each other.
-                if (enemyBase == null)
-                {
-                    _health.TakeDamage(damageDealer.Damage);
-                }
+                Release();
             }
         }
 
@@ -81,6 +75,9 @@ namespace Gameplay
         private void OnDied()
         {
             Release();
+
+            Data.Session.Gold.Set(Data.Session.Gold.Get() + _settings.scorePoints);
+            Data.Session.KillsCount++;
         }
 
         private void ActivateTakeDamageVFX()
