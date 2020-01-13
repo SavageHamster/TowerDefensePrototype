@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Gameplay Settings DB
   m_EditorClassIdentifier: 
   _playerSettings:
-    _health: 5
+    _health: 10
     _gold: 10
   _gameSettings:
-    _enemiesCountDeltaPerWave: 3
-    _enemiesWavesCooldownSec: 20
+    _enemiesCountMaxDeltaPerWave: 2
+    _enemiesWavesCooldownSec: 10
     _enemiesStatsDeltaPerWave: 1
   _enemiesSettings:
   - monoBehaviour: {fileID: 8600851606324196024, guid: 12845adb52a518748a569dc40ad0a663,
@@ -37,13 +37,13 @@ MonoBehaviour:
       type: 3}
     data:
       damage: 1
-      shotsPerSec: 2
+      shotsPerMinute: 30
       upgradePrice: 1
       upgradeLevelStatsDelta: 1
   - monoBehaviour: {fileID: 4590124718162789453, guid: c5bd41c47bae5f443a39bfec13491434,
       type: 3}
     data:
       damage: 2
-      shotsPerSec: 1
+      shotsPerMinute: 20
       upgradePrice: 1
       upgradeLevelStatsDelta: 1

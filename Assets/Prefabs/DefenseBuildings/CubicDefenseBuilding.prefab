@@ -78,18 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2620950377314941822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448348111036220703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c91ad63104b4c144ad1e2daa580c1a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &3425965865869999373
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -103,6 +91,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 6, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2620950377314941822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448348111036220703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c91ad63104b4c144ad1e2daa580c1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7664505307928885061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,9 +168,10 @@ PrefabInstance:
     - target: {fileID: 7810667560130212442, guid: 4b289324e273e894badeab7ed10043fb,
         type: 3}
       propertyPath: m_Name
-      value: CubicDefenceBuilding
+      value: CubicDefenseBuilding
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4894243954479874190, guid: 4b289324e273e894badeab7ed10043fb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4b289324e273e894badeab7ed10043fb, type: 3}
 --- !u!1 &448348111036220703 stripped
 GameObject:

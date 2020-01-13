@@ -8,7 +8,7 @@ namespace Gameplay
         [SerializeField]
         private Health _health;
         [SerializeField]
-        private DamageDealer _damageDealer;
+        private CollisionDamageDealer _damageDealer;
 
         private GameplaySettingsDB.PlayerSettings _settings;
 
@@ -17,7 +17,6 @@ namespace Gameplay
             _settings = GameplaySettings.Player;
 
             _health.Died += OnDied;
-            _health.TookDamage += OnTookDamage;
 
             SessionsManager.Instance.SessionStarted += OnSessionStarted;
         }
@@ -25,7 +24,6 @@ namespace Gameplay
         private void OnDestroy()
         {
             _health.Died -= OnDied;
-            _health.TookDamage -= OnTookDamage;
 
             if (SessionsManager.Instance != null)
             {
@@ -35,17 +33,13 @@ namespace Gameplay
 
         private void OnTriggerEnter(Collider other)
         {
-            var damageDealer = other.GetComponent<DamageDealer>();
+            var damageDealer = other.GetComponent<CollisionDamageDealer>();
 
             if (damageDealer != null)
             {
                 _health.TakeDamage(damageDealer.Damage);
+                Data.Session.PlayerHealth.Set(_health.Current);
             }
-        }
-
-        private void OnTookDamage(int health)
-        {
-            Data.Session.PlayerHealth.Set(health);
         }
 
         private void OnDied()

@@ -43,11 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76872f920b646594cbdac696ddba3e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistent: 1
+  _persistent: 0
   _prototypes:
   - prototype: {fileID: 8600851606324196024, guid: 12845adb52a518748a569dc40ad0a663,
       type: 3}
-    count: 10
+    count: 15
   - prototype: {fileID: 7505337182982389262, guid: c78532ca244f84842ace8d0bd7325045,
       type: 3}
-    count: 10
+    count: 15
+  - prototype: {fileID: 7036972934170031599, guid: b8ad4ed33f9d77f4d8086bbb53dabb12,
+      type: 3}
+    count: 20
+  - prototype: {fileID: 3743274603642581493, guid: 60dfb395c7777f240b1f0ebb07f989a4,
+      type: 3}
+    count: 4

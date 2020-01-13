@@ -2,29 +2,30 @@
 
 namespace Gameplay
 {
-    internal sealed class Weapon : MonoBehaviour
+    internal sealed class Weapon
     {
+        private const int SecondsInMinute = 60;
+
         private float _nextShotTime;
         private float _cooldownSec;
+        private int _damage;
 
-        private void Update()
+        public bool IsReady()
         {
-            if (Time.time >= _nextShotTime)
-            {
-                Shot();
-
-                _nextShotTime = Time.time + _cooldownSec;
-            }
+            return Time.time >= _nextShotTime;
         }
 
-        private void Initialize(int shotsPerSec)
+        public void Initialize(int shotsPerMinute, int damage)
         {
-            _cooldownSec = 1f / shotsPerSec;
+            _cooldownSec = (float)SecondsInMinute / shotsPerMinute;
+            _damage = damage;
         }
 
-        private void Shot()
+        public void Shot(EnemyBase target)
         {
+            target.TakeDamage(_damage);
 
+            _nextShotTime = Time.time + _cooldownSec;
         }
     }
 }

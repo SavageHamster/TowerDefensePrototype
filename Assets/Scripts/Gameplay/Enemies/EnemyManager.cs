@@ -39,6 +39,7 @@ namespace Gameplay
             if (Data.Session.IsGameOver.Get())
             {
                 EnemyBase.ReleaseAll();
+                _nextWaveTime = 0f;
             }
         }
 
@@ -74,7 +75,7 @@ namespace Gameplay
         private int CalculateEnemiesCount()
         {
             var minValue = Data.Session.EnemiesWaveNumber;
-            var maxValue = Data.Session.EnemiesWaveNumber + GameplaySettings.Game.EnemiesCountDeltaPerWave;
+            var maxValue = Data.Session.EnemiesWaveNumber + GameplaySettings.Game.EnemiesCountMaxDeltaPerWave;
 
             return Random.Range(minValue, maxValue);
         }

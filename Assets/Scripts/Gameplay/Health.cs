@@ -4,22 +4,19 @@ using UnityEngine;
 internal sealed class Health : MonoBehaviour
 {
     public event Action Died;
-    public event Action<int> TookDamage;
 
-    private int _health;
+    public int Current { get; private set; }
 
     public void Initialize(int health)
     {
-        _health = health;
+        Current = health;
     }
 
     public void TakeDamage(int damage)
     {
-        _health = Mathf.Max(0, _health - damage);
+        Current = Mathf.Max(0, Current - damage);
 
-        TookDamage?.Invoke(_health);
-
-        if (_health <= 0)
+        if (Current <= 0)
         {
             Died?.Invoke();
         }

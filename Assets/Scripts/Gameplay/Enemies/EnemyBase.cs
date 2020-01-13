@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using VFX;
 
 namespace Gameplay
 {
@@ -12,11 +13,13 @@ namespace Gameplay
         [SerializeField]
         private Health _health;
         [SerializeField]
-        private DamageDealer _damageDealer;
+        private CollisionDamageDealer _damageDealer;
 
         private static readonly List<EnemyBase> _enabledEnemies = new List<EnemyBase>();
-
         private EnemyData _settings;
+
+        public static List<EnemyBase> EnabledEnemies => _enabledEnemies;
+        public int Health => _health.Current;
 
         private void OnEnable()
         {
@@ -37,13 +40,14 @@ namespace Gameplay
 
         private void OnTriggerEnter(Collider other)
         {
-            var damageDealer = other.GetComponent<DamageDealer>();
+            var damageDealer = other.GetComponent<CollisionDamageDealer>();
 
             if (damageDealer != null)
             {
-                var player = other.GetComponent<Player>();
+                var enemyBase = other.GetComponent<EnemyBase>();
 
-                if (player != null)
+                // Enemies should not damage each other.
+                if (enemyBase == null)
                 {
                     _health.TakeDamage(damageDealer.Damage);
                 }
@@ -66,19 +70,24 @@ namespace Gameplay
             _navMeshAgent.destination = targetPosition;
         }
 
+        public void TakeDamage(int damage)
+        {
+            ActivateTakeDamageVFX();
+            _health.TakeDamage(damage);
+        }
+
         protected abstract void Release();
 
         private void OnDied()
         {
-            ActivateDeathVFX();
             Release();
         }
 
-        private void ActivateDeathVFX()
+        private void ActivateTakeDamageVFX()
         {
-            // TODO
-            //var explosion = Pool.Instance.Get<ExplosionVFX>();
-            //explosion.transform.position = transform.position;
+            var takeDamageVFXObj = Pool.Instance.Get<TakeDamageVFX>();
+            takeDamageVFXObj.transform.position = transform.position;
+            takeDamageVFXObj.transform.SetParent(transform);
         }
 
         private void InitializeComponents()

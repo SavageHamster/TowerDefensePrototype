@@ -25,14 +25,6 @@ public class ScenesController : SingletonMonoBehaviour<ScenesController>
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.T))
-        {
-            DataLayer.Data.Session.Gold.Set(DataLayer.Data.Session.Gold.Get() + 1);
-        }
-    }
-
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;

@@ -6,7 +6,7 @@ namespace DataLayer
     public sealed class DefenseBuildingData
     {
         public int damage;
-        public int shotsPerSec;
+        public int shotsPerMinute;
         public int upgradePrice;
         public int upgradeLevelStatsDelta;
     }

@@ -36,13 +36,13 @@ sealed class GameplaySettingsDB : ScriptableObject, ISerializationCallbackReceiv
     public class GameSettings
     {
         [SerializeField]
-        private int _enemiesCountDeltaPerWave;
+        private int _enemiesCountMaxDeltaPerWave;
         [SerializeField]
         private int _enemiesWavesCooldownSec;
         [SerializeField]
         private int _enemiesStatsDeltaPerWave;
 
-        public int EnemiesCountDeltaPerWave => _enemiesCountDeltaPerWave;
+        public int EnemiesCountMaxDeltaPerWave => _enemiesCountMaxDeltaPerWave;
         public int EnemiesWavesCooldownSec => _enemiesWavesCooldownSec;
         public int EnemiesStatsDeltaPerWave => _enemiesStatsDeltaPerWave;
     }

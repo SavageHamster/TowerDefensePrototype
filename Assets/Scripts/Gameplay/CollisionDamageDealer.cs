@@ -2,7 +2,7 @@
 
 namespace Gameplay
 {
-    internal sealed class DamageDealer : MonoBehaviour
+    internal sealed class CollisionDamageDealer : MonoBehaviour
     {
         public int Damage { get; private set; }
 
