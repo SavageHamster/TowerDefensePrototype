@@ -76,7 +76,7 @@ namespace Gameplay
         {
             Release();
 
-            Data.Session.Gold.Set(Data.Session.Gold.Get() + _settings.scorePoints);
+            Data.Session.Gold.Set(Data.Session.Gold.Get() + _settings.goldForKill);
             Data.Session.KillsCount++;
         }
 

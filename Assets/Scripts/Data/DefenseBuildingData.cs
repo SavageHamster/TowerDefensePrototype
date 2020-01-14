@@ -7,7 +7,7 @@ namespace DataLayer
     {
         public int damage;
         public int shotsPerMinute;
-        public int upgradePrice;
         public int upgradeLevelStatsDelta;
+        public int upgradePrice;
     }
 }

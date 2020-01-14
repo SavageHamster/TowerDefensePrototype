@@ -4,12 +4,12 @@ internal sealed class CameraController : MonoBehaviour
 {
     private const float MovementSpeed = 30f;
     private const float RotationSpeed = 100f;
-    private const float ZoomByMouseSpeed = 400f;
+    private const float ZoomByMouseSpeed = 1000f;
 
     [SerializeField]
     private Camera _camera;
 
-    private void Update()
+    private void LateUpdate()
     {
         var isMouse1Pressed = Input.GetMouseButton(1);
         var isMouse2Pressed = Input.GetMouseButton(2);

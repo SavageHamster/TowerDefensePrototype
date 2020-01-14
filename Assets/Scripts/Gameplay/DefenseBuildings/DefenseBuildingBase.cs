@@ -1,5 +1,4 @@
 ﻿using DataLayer;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,11 +8,13 @@ namespace Gameplay
 {
     internal abstract class DefenseBuildingBase : MonoBehaviour
     {
-        private const float ShotRangeSqr = 324f;
+        private const float ShotRangeSqr = 144f;
 
         private Weapon _weapon = new Weapon();
         private DefenseBuildingData _settings;
-        private int _level;
+
+        public ObservableProperty<int> Level { get; private set; } = new ObservableProperty<int>(0);
+        public float UpgradePrice => GameplaySettings.DefenseBuildings[GetType()].upgradePrice;
 
         private void Awake()
         {
@@ -63,7 +64,7 @@ namespace Gameplay
 
         private void OnSessionStarted()
         {
-            _level = 0;
+            Level.Set(0);
             InitializeComponents();
         }
 
@@ -71,7 +72,7 @@ namespace Gameplay
         {
             if (Data.Session.Gold.Get() >= _settings.upgradePrice)
             {
-                _level++;
+                Level.Set(Level.Get() + 1);
 
                 InitializeComponents();
 
@@ -81,8 +82,8 @@ namespace Gameplay
 
         private void InitializeComponents()
         {
-            var shotsPerMinute = _settings.shotsPerMinute + _settings.upgradeLevelStatsDelta * _level;
-            var damage = _settings.damage + _settings.upgradeLevelStatsDelta * _level;
+            var shotsPerMinute = _settings.shotsPerMinute + _settings.upgradeLevelStatsDelta * Level.Get();
+            var damage = _settings.damage + _settings.upgradeLevelStatsDelta * Level.Get();
 
             _weapon.Initialize(shotsPerMinute, damage);
         }
@@ -92,5 +93,13 @@ namespace Gameplay
             var shotVFXObj = Pool.Instance.Get<ShotVFX>();
             shotVFXObj.transform.position = transform.position;
         }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(transform.position, Mathf.Sqrt(ShotRangeSqr));
+        }
+#endif
     }
 }

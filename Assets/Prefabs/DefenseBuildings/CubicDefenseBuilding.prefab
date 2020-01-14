@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &3425965865869999373
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448348111036220703}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 6, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2620950377314941822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448348111036220703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c91ad63104b4c144ad1e2daa580c1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5271589870615190887
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,31 +103,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3425965865869999373
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448348111036220703}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 6, z: 2}
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &2620950377314941822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448348111036220703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c91ad63104b4c144ad1e2daa580c1a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7664505307928885061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,6 +110,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4687943226017663826, guid: 4b289324e273e894badeab7ed10043fb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7134544520808976181, guid: 4b289324e273e894badeab7ed10043fb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -170,6 +175,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CubicDefenseBuilding
       objectReference: {fileID: 0}
+    - target: {fileID: 8437813515580343682, guid: 4b289324e273e894badeab7ed10043fb,
+        type: 3}
+      propertyPath: _defenceBuilding
+      value: 
+      objectReference: {fileID: 2620950377314941822}
     m_RemovedComponents:
     - {fileID: 4894243954479874190, guid: 4b289324e273e894badeab7ed10043fb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4b289324e273e894badeab7ed10043fb, type: 3}

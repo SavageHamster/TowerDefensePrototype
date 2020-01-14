@@ -7,6 +7,6 @@ namespace DataLayer
     {
         public int health;
         public int damage;
-        public int scorePoints;
+        public int goldForKill;
     }
 }
