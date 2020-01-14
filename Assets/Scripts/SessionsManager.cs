@@ -34,12 +34,12 @@ public sealed class SessionsManager : SingletonMonoBehaviour<SessionsManager>
     {
         switch (scene)
         {
-            case ScenesController.Scene.Menu:
-                break;
             case ScenesController.Scene.Game:
                 RestartSession();
                 break;
+            case ScenesController.Scene.Menu:
             case ScenesController.Scene.None:
+            case ScenesController.Scene.Loading:
             case ScenesController.Scene.Preloader:
                 break;
         }

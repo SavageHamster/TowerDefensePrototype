@@ -12,6 +12,7 @@ namespace UI
         {
             _canvasGroup.alpha = 1f;
             _canvasGroup.blocksRaycasts = true;
+
             OnShow();
         }
 
