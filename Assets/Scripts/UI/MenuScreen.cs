@@ -43,7 +43,7 @@ namespace UI
 
         private void OnPlayButtonClick()
         {
-            ScenesController.Instance.LoadScene(ScenesController.Scenes.Game, () => ScreenController.Instance.Show<GameScreen>());
+            ScenesController.Instance.LoadScene(ScenesController.Scene.Game, () => ScreenController.Instance.Show<GameScreen>());
         }
     }
 }

@@ -91,7 +91,7 @@ namespace UI
 
         private void OpenMenu()
         {
-            ScenesController.Instance.LoadScene(ScenesController.Scenes.Menu, () => ScreenController.Instance.Show<MenuScreen>());
+            ScenesController.Instance.LoadScene(ScenesController.Scene.Menu, () => ScreenController.Instance.Show<MenuScreen>());
         }
 
         private void SubscribeOnUIEvents()

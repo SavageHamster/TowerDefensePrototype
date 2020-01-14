@@ -1,24 +1,27 @@
 ﻿using System;
 using UnityEngine;
 
-internal sealed class Health : MonoBehaviour
+namespace Gameplay
 {
-    public event Action Died;
-
-    public int Current { get; private set; }
-
-    public void Initialize(int health)
+    internal sealed class Health : MonoBehaviour
     {
-        Current = health;
-    }
+        public event Action Died;
 
-    public void TakeDamage(int damage)
-    {
-        Current = Mathf.Max(0, Current - damage);
+        public int Current { get; private set; }
 
-        if (Current <= 0)
+        public void Initialize(int health)
         {
-            Died?.Invoke();
+            Current = health;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Current = Mathf.Max(0, Current - damage);
+
+            if (Current <= 0)
+            {
+                Died?.Invoke();
+            }
         }
     }
 }

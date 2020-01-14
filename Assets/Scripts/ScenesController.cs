@@ -1,22 +1,23 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScenesController : SingletonMonoBehaviour<ScenesController>
 {
-    public enum Scenes
+    public enum Scene
     {
         None,
         Preloader,
         Menu,
+        Loading,
         Game
     }
 
-    public event Action<Scenes> SceneLoaded;
+    public event Action<Scene> SceneLoaded;
 
-    private Scenes _sceneIsLoading = Scenes.None;
+    private Scene _sceneIsLoading = Scene.None;
+    private Scene _loadingScene = Scene.None;
     private float _sceneLoadStartTime;
     private readonly Dictionary<string, Action> _callbackBySceneType = new Dictionary<string, Action>();
 
@@ -30,9 +31,9 @@ public class ScenesController : SingletonMonoBehaviour<ScenesController>
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void LoadScene(Scenes scene, Action callback = null)
+    public void LoadScene(Scene scene, Action callback = null)
     {
-        if (scene == Scenes.None)
+        if (scene == Scene.None)
         {
             Debug.LogError("An attempt to load scene None.");
             return;
@@ -47,11 +48,16 @@ public class ScenesController : SingletonMonoBehaviour<ScenesController>
             return;
         }
 
-        var preloaderSceneName = Scenes.Preloader.ToString();
-
+        var preloaderSceneName = Scene.Preloader.ToString();
+        
         if (activeScene.name != preloaderSceneName)
         {
-            SceneManager.LoadScene(Scenes.Preloader.ToString());
+            _loadingScene = Scene.Loading;
+            SceneManager.LoadScene(_loadingScene.ToString());
+        }
+        else
+        {
+            _loadingScene = Scene.Preloader;
         }
 
         SceneManager.LoadSceneAsync(scene.ToString(), LoadSceneMode.Additive);
@@ -71,13 +77,13 @@ public class ScenesController : SingletonMonoBehaviour<ScenesController>
         }
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode loadSceneMode)
     {
         if (scene.name == _sceneIsLoading.ToString())
         {
-            _sceneIsLoading = Scenes.None;
+            _sceneIsLoading = Scene.None;
             _sceneLoadStartTime = 0f;
-            SceneManager.UnloadSceneAsync(Scenes.Preloader.ToString());
+            SceneManager.UnloadSceneAsync(_loadingScene.ToString());
 
             if (_callbackBySceneType.ContainsKey(scene.name))
             {
@@ -85,11 +91,11 @@ public class ScenesController : SingletonMonoBehaviour<ScenesController>
                 _callbackBySceneType.Remove(scene.name);
             }
 
-            Scenes sceneValue;
+            Scene sceneValue;
 
             try
             {
-                sceneValue = (Scenes)Enum.Parse(typeof(Scenes), scene.name);
+                sceneValue = (Scene)Enum.Parse(typeof(Scene), scene.name);
                 SceneLoaded?.Invoke(sceneValue);
             }
             catch(Exception ex)
