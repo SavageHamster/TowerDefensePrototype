@@ -38,12 +38,12 @@ MonoBehaviour:
     data:
       damage: 1
       shotsPerMinute: 30
-      upgradeLevelStatsDelta: 2
+      upgradeLevelStatsDelta: 3
       upgradePrice: 5
   - monoBehaviour: {fileID: 4590124718162789453, guid: c5bd41c47bae5f443a39bfec13491434,
       type: 3}
     data:
       damage: 2
       shotsPerMinute: 20
-      upgradeLevelStatsDelta: 2
+      upgradeLevelStatsDelta: 3
       upgradePrice: 6
