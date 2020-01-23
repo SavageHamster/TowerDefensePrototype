@@ -4,6 +4,7 @@ namespace Gameplay
 {
     internal sealed class CameraController : MonoBehaviour
     {
+#if UNITY_EDITOR || UNITY_STANDALONE
         private const float MovementSpeed = 30f;
         private const float RotationSpeed = 100f;
         private const float ZoomByMouseSpeed = 1000f;
@@ -53,5 +54,6 @@ namespace Gameplay
         {
             _camera.transform.position += _camera.transform.right * MovementSpeed * multiplier * Time.deltaTime;
         }
+#endif
     }
 }
